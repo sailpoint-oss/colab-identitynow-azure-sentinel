@@ -1,0 +1,17 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "",
+    "AZURE_STORAGE_ENDPOINT_URL": "",
+    "AZURE_STORAGE_ACCOUNT_NAME": "",
+    "AZURE_STORAGE_ACCESS_KEY": "",
+    "FUNCTIONS_WORKER_RUNTIME": "python",
+    "GRANT_TYPE": "client_credentials",
+    "TENANT_ID": "",
+    "CLIENT_ID": "",
+    "CLIENT_SECRET": "",
+    "LIMIT": "10000",
+    "CUSTOMER_ID": "",
+    "SHARED_KEY": ""
+  }
+}
