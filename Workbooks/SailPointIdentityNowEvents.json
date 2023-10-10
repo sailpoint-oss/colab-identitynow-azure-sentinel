@@ -1,0 +1,229 @@
+{
+  "version": "Notebook/1.0",
+  "items": [
+    {
+      "type": 1,
+      "content": {
+        "json": "**NOTE**: This data connector depends on a parser based on Kusto Function **SailPointIDN_Events** and **SailPointIDN_Triggers** to work as expected.[Follow steps to get this Kusto Function] (https://aka.ms/sentinel-SailPointIdentityNow-parser) which is deployed with the Azure Sentinel Solution."
+      },
+      "name": "text - 0"
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let lbperiod = 14d;\nSailPointIDN_Events_CL\n| where TimeGenerated > ago(lbperiod)\n| count ",
+        "size": 0,
+        "title": "SailPoint IdentityNow Events",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "50",
+      "name": "SailPoint IdentityNow Events",
+      "styleSettings": {
+        "margin": "0px",
+        "padding": "0px",
+        "maxWidth": "50%",
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let lbperiod = 14d;\nSailPointIDN_Triggers_CL \n| where TimeGenerated > ago(lbperiod)\n| count ",
+        "size": 0,
+        "title": "SailPoint IdentityNow Triggers",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "50",
+      "name": "SailPoint IdentityNow Triggers",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let lbperiod = 14d;\nSailPointIDN_Events_CL\n| where TimeGenerated > ago(lbperiod)\n| where status_s == \"FAILED\"\n| summarize type=count() by type_s\n| project type_s, type\n| render barchart\n",
+        "size": 0,
+        "title": "SailPoint IdentityNow Events Bar Chart",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "100",
+      "name": "SailPoint IdentityNow Events Bar Chart",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SailPointIDN_Triggers_CL | where Body__metadata_triggerId_s == 'idn:identity-attributes-changed' | count \n\n",
+        "size": 0,
+        "title": "Identity Attributes Changed Event Trigger",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "25",
+      "name": "Identity Attributes Changed Event Trigger",
+      "styleSettings": {
+        "maxWidth": "25%",
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SailPointIDN_Triggers_CL | where Body__metadata_triggerId_s == 'idn:saved-search-complete' | count \n\n",
+        "size": 0,
+        "title": "Saved Search Complete Event Trigger",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "25",
+      "name": "Saved Search Complete Event Trigger",
+      "styleSettings": {
+        "maxWidth": "25%",
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SailPointIDN_Triggers_CL | where Body__metadata_triggerId_s == 'idn:identity-deleted' | count \n\n",
+        "size": 0,
+        "title": "Identity Deleted",
+        "timeContext": {
+          "durationMs": 86400000
+        },
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "25",
+      "name": "Identity Deleted Event Trigger",
+      "styleSettings": {
+        "maxWidth": "25%",
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SailPointIDN_Triggers_CL | where Body__metadata_triggerId_s == 'idn:identity-created' | count \n\n",
+        "size": 0,
+        "title": "Identity Created Event Trigger",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "25",
+      "name": "Identity Created Event Trigger",
+      "styleSettings": {
+        "maxWidth": "25%",
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "SailPointIDN_Triggers_CL | where Body__metadata_triggerId_s == 'idn:aggregation-accounts-collected' | count \n\n",
+        "size": 0,
+        "title": "Aggregation Accounts Collected Event Trigger",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "25",
+      "name": "Aggregation Accounts Collected Event Trigger",
+      "styleSettings": {
+        "maxWidth": "25%",
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let lbperiod = 14d;\nSailPointIDN_Events_CL\n| where TimeGenerated > ago(lbperiod)\n| where status_s == \"FAILED\"\n| summarize technicalName=count() by technicalName_s\n| render piechart\n\n\n",
+        "size": 0,
+        "title": "Chart depicting Failed Events",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "name": "Chart depicting Failed Events",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let lbperiod = 14d;\nSailPointIDN_Triggers_CL \n| where TimeGenerated > ago(lbperiod)\n| summarize Events = count() by Result = strcat('Event Trigger ', Body__metadata_triggerId_s)\n| render piechart \n",
+        "size": 0,
+        "title": "Events with status 'Failed'",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "50",
+      "name": "Events with status 'Failed'",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let lbperiod = 14d;\nSailPointIDN_Events_CL\n| where TimeGenerated > ago(lbperiod)\n| summarize eventTypeCount=count() by type_s\n| sort by eventTypeCount \n| render columnchart \n",
+        "size": 0,
+        "title": "Types of Events",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "50",
+      "name": "Types of Events",
+      "styleSettings": {
+        "showBorder": true
+      }
+    },
+    {
+      "type": 3,
+      "content": {
+        "version": "KqlItem/1.0",
+        "query": "let lbperiod = 14d;\nSailPointIDN_Events_CL\n| where TimeGenerated > ago(lbperiod)\n| project Id=id_g, TechnicalName= technicalName_s, Action=action_s, Type=type_s, CreatedTime=created_t, Operation=operation_s, Status=stack_s\n| render table   \n",
+        "size": 0,
+        "title": "Total Search Events",
+        "showRefreshButton": true,
+        "queryType": 0,
+        "resourceType": "microsoft.operationalinsights/workspaces"
+      },
+      "customWidth": "50",
+      "name": "Total Search Events",
+      "styleSettings": {
+        "showBorder": true
+      }
+    }
+  ],
+  "fallbackResourceIds": [],
+  "fromTemplateId": "sentinel-SailPointIdentityNowEventsWorkbook",
+  "$schema": "https://github.com/Microsoft/Application-Insights-Workbooks/blob/master/schema/workbook.json"
+}
